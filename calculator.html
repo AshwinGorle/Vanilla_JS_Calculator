@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css"></link>
+
+</head>
+<style>
+body{
+     margin: 0px;
+     padding: 0px;
+     background-repeat: no-repeat;
+     background-size: cover;
+background-image: url(./top-view-geometric-forms-with-copy-space.jpg);
+}
+#screen{
+    background-color: rgb(32, 33, 32);
+    border-radius: 10px;
+    margin: 5px;
+    
+}
+
+#root_Container{
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+    border: 1px solid black;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    width : 400px;
+    height : 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    padding: 5px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 2px 2px 15px rgb(124, 115, 115);
+
+}
+
+#buttonPad{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin : 1%;
+}
+
+.buttons{
+    
+    border: 2px solid black;
+    margin: 2%;
+    border-radius: 4%;
+    font-size: 30px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    background-image: url();
+    text-align: center;
+    box-shadow: 1px 1px rgb(49, 48, 48);
+    border-radius: 10px;
+    padding-top: 10%;
+    color: rgb(37, 42, 46);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(0px);
+    
+}
+.switch{
+    border: 2px solid black;
+    margin: 2%;
+    border-radius: 10px;
+    font-size: 30px;
+    background-color: rgb(254, 254, 254);
+    text-align: center;
+    box-shadow: none;
+    color: black;
+    
+    
+}
+#display_Containt{
+    background-color: white;
+    margin: 1%;
+    border-radius: 10px;
+    border : 1px solid black;
+    text-align: right;
+    height: 100px;
+    
+}
+#small_Display{
+      font-size: 20px;
+      margin-right: 10px;
+}
+#Display{
+      font-size: 35px;
+      margin-right: 10px;
+      margin-right: 10px;
+}
+#display_Containt{
+    background-color: rgb(255, 255, 255);
+}
+
+.descreption{
+    display: inline-block;
+    color: white;
+    background-color: rgb(25, 11, 60);
+    text-align: center;
+}
+</style>
+<body>
+   
+ <div id = "root_Container">
+    <div id ="screen">
+        <div id = "display_Containt">
+        <p id = "smallDisplay" ></p>
+        <p id = "display" ></p>
+        </div>
+    </div>
+
+    <div id = "buttonPad">
+        <div class="buttons" id="modulus">%</div>
+        <div class="buttons" id="check">CE</div>
+        <div class="buttons" id="cleareAll">C</div>
+        <div class="buttons" id="back">back</div>
+        <div class="buttons" id="box-1/x">1/x</div>
+        <div class="buttons" id="square">x^2</div>
+        <div class="buttons" id="box-root">√</div>
+        <div class="buttons" id="divide">/</div>
+        <div class="buttons" id="box7">7</div>
+        <div class="buttons" id="box8">8</div>
+        <div class="buttons" id="box9">9</div>
+        <div class="buttons" id="multiply">*</div>
+        <div class="buttons" id="box5">5</div>
+        <div class="buttons" id="box6">6</div>
+        <div class="buttons" id="box1">4</div>
+        <div class="buttons" id="minus">-</div>
+        <div class="buttons" id="box3">3</div>
+        <div class="buttons" id="box18">2</div>
+        <div class="buttons" id="box19">1</div>
+        <div class="buttons" id="add">+</div>
+        <div class="buttons" id="track">+/-</div>
+        <div class="buttons" id="box0">0</div>
+        <div class="buttons" id="box-dot">.</div>
+        <div class="buttons" id="equal">=</div>
+    </div>
+
+ </div>
+
+ <div class="descreption">
+    <div>
+    <h1>vanilla JS Calculator</h1>
+    <p>It is a vanilla javascript calculatior where no prebuilt funtions of js are used which is generaly used while coding a calculator in JS this project even does not uses the "slice" like basic prebuilt functions the complete funtionality of the project is logical and each and every functionality is coded without using any prebouilt function.
+        <h2>Hope! you will like it 😊</h2>
+    </p>
+</div>
+ </div>
+
+</body>
+<script>
+    const resultArray = [];
+var resultcount=0;
+
+//--------------------------------------------------------------------------------------
+//                             Function Block
+function cleareAll() {
+    display.textContent = null;
+    smallDisplay.textContent = null;
+}
+
+function clear() {
+    let result = document.getElementById("display").innerHTML;
+    document.getElementById("display").textContent = null;
+    return result;
+}
+
+function multiply(val1, val2) {
+    let result = val1 * val2;
+    display.textContent = result;
+
+}
+
+function square() {
+    let result = display.textContent;
+    result = Number(result) * Number(result);
+    document.getElementById("display").textContent = result;
+}
+
+function erase() {
+    console.log("back called")
+    var a = display.textContent;
+    var b = smallDisplay.textContent;
+    let answer = "";
+    let answer2 = "";
+    //for big display
+    for (i = 0; i < a.length - 1; i++) {
+        answer += a.charAt(i);
+    }
+    display.textContent = answer;
+    //for small display
+    for (i = 0; i < b.length - 1; i++) {
+        answer2 += b.charAt(i);
+    }
+    smallDisplay.textContent = answer2;
+}
+
+function smallDisplayErase(text) {
+    let size = text.length;
+    let result = "";
+    for (let i = 0; i < size - 1; i++) {
+        result += charAt[i];
+    }
+    return result;
+}
+
+function backTrack(text) {
+    previousValue[backCounter] = text;
+    backCounter++;
+}
+
+//------------------------------------------------------------------------------
+//                     Driving Code
+var pad = document.getElementById("buttonPad");
+var pad = document.getElementById("buttonPad");
+var previous;
+var current;
+var display = document.getElementById("display");
+var smallDisplay = document.getElementById("smallDisplay");
+var operator;
+var backCounter = 0;
+var previousValue = [];
+
+pad.addEventListener('click', (e) => {
+    eId = e.target.id;
+
+    //This is for click effect
+    if (eId != '' && eId != "buttonPad") {
+        document.getElementById(eId).classList.add("switch");
+        setTimeout(() => {
+            document.getElementById(eId).classList.remove("switch");
+        }, 100, eId)
+    }
+
+    if (eId == "multiply" || eId == "minus" || eId == "divide" || eId == "modulus" || eId == "add") {
+        previous = clear();
+        console.log(previous);
+        operator = eId;
+        console.log(operator);
+    }
+    
+    if (eId == "equal") {
+        current = clear();
+
+        console.log(current);
+
+        switch (operator) {
+            case "multiply":
+                display.textContent = current * previous;
+                break;
+
+            case "minus":
+                display.textContent = previous - current;
+                break;
+
+            case "divide":
+                display.textContent = previous / current;
+                break;
+
+            case "modulus":
+                display.textContent = previous % current;
+                break;
+
+            case "add":
+                display.textContent = Number(previous) + Number(current);
+                break;
+
+
+        }
+        // for Updating screen 1 and screen 2 after performing calculations
+        smallDisplay.textContent = display.textContent;
+        smallDisplay.textContent = smallDisplayErase(smallDisplay.textContent);
+        backTrack(smallDisplay.textContent);
+        
+        resultArray[resultcount] = smallDisplay.textContent;
+        resultcount++;
+        
+    }
+
+    if (eId == "square") {
+        square();
+    }
+    if (eId == "back") {
+        erase();
+    }
+    if (eId == "cleareAll") {
+        cleareAll();
+    }
+    if (eId == "check") {
+        console.log(previousValue);
+    }
+
+
+    //updating typed content in display
+    if (eId != "check" && eId != "cleareAll" && eId != "square" && eId != "back" && eId != "equal" && eId != "multiply" && eId != "minus" && eId != "divide" && eId != "modulus" && eId != "add") {
+
+        let prev = display.textContent;
+        let input = document.getElementById(eId).textContent;
+        display.textContent = prev + input;
+
+
+    }
+    if (eId != "check" && eId != "cleareAll" && eId != "cleareAll" && eId != "equal" && eId != "back" && eId != "square") {
+        let smprev = smallDisplay.textContent;
+        let sminput = document.getElementById(eId).textContent;
+        smallDisplay.textContent = smprev + sminput;
+    }
+
+
+    if (eId == "check") {
+        console.log(previousValue);
+    }
+
+    if(eId == "track"){
+        for(let i=0; i<5; i++){
+            console.log(resultArray[i]);
+        }
+    }
+});
+
+
+</script>
+</html>
